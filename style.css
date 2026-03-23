@@ -1,0 +1,102 @@
+:root {
+  --bg-color: #f4f1ea;
+  --text-color: #4a4a4a;
+  --primary-color: #8da399;
+  --matrix-line-color: rgba(74, 74, 74, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+#app {
+  width: 100%;
+  max-width: 600px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: clamp(1.5rem, 8vw, 2.5rem);
+  margin: 1.5rem 0 0.5rem;
+  line-height: 1.2;
+}
+
+.header p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 80%;
+  margin: 0 auto 2.5rem;
+}
+
+input,
+button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(74, 74, 74, 0.15);
+  outline: none;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.25s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.matrix-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.matrix-container svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+}
+
+@media (min-width: 480px) {
+  .input-section {
+    flex-direction: row;
+    width: 90%;
+    max-width: 500px;
+  }
+
+  #app {
+    padding: 2rem;
+  }
+}
