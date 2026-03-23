@@ -1,5 +1,5 @@
-import { calculateMainPoints } from './utils/ArcanaLogic.js';
-import { drawMatrix } from './components/MatrixView.js';
+import { calculateMainPoints } from './ArcanaLogic.js';
+import { drawMatrix } from './MatrixView.js';
 
 const birthDateInput = document.querySelector('#birth-date');
 const calculateBtn = document.querySelector('#calculate-btn');
