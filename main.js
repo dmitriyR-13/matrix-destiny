@@ -4,6 +4,7 @@ import { drawMatrix } from './MatrixView.js';
 const birthDateInput = document.querySelector('#birth-date');
 const calculateBtn = document.querySelector('#calculate-btn');
 const display = document.querySelector('#matrix-display');
+const ctaSection = document.querySelector('#cta-section');
 
 calculateBtn.addEventListener('click', () => {
   const dateValue = birthDateInput.value;
@@ -13,19 +14,15 @@ calculateBtn.addEventListener('click', () => {
     return;
   }
 
-  const results = calculateMainPoints(dateValue);
+  try {
+    const results = calculateMainPoints(dateValue);
+    display.innerHTML = drawMatrix(results);
+    display.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (ctaSection) {
+      ctaSection.classList.replace('cta-hidden', 'cta-visible');
+    }
 
-  display.innerHTML = drawMatrix(results);
+  } catch (err) {
+    console.error("Ошибка при расчете или отрисовке:", err);
+  }
 });
-
-function renderSimpleList(data) {
-  display.innerHTML = `
-    <div style="text-align: left; background: #333; padding: 20px; border-radius: 8px;">
-      <p>Лево (День): ${data.pointA}</p>
-      <p>Верх (Месяц): ${data.pointB}</p>
-      <p>Право (Год): ${data.pointC}</p>
-      <p>Низ (Судьба): ${data.pointD}</p>
-      <p>Центр (Комфорт): ${data.pointE}</p>
-    </div>
-  `;
-}

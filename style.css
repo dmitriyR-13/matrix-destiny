@@ -183,3 +183,77 @@ button:hover {
   color: #444;
   max-width: 1200px;
 }
+
+.cta-hidden {
+  display: none;
+  opacity: 0;
+}
+
+.cta-visible {
+  display: block;
+  animation: fadeIdBlur 1s ease-out forwards;
+  margin-top: 3rem;
+  padding: 0 10px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.cta-content {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 30px 20 px;
+  border-radius: 24px;
+  border: 1px solid rgba(141, 163, 153, 0.2);
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.cta-highlight {
+  margin: 20px 0;
+  font-size: 0.7rem;
+  line-height: 1;
+  color: var(--text-color);
+  background: white;
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.cta-highlight p {
+  font-size: 0.7rem;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  padding: 18px 25px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(141, 163, 153, 0.3);
+}
+
+.cta-button:active {
+  transform: scale(0.96);
+}
+
+@keyframes fadeIdBlur {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
