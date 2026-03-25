@@ -257,3 +257,49 @@ button:hover {
     filter: blur(0);
   }
 }
+
+.welcome-section {
+  margin-bottom: 2rem;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.welcome-hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+  display: none;
+}
+
+.welcome-card {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 25px;
+  border-radius: 20px;
+  border: 1px solid rgba(141, 163, 153, 0.2);
+}
+
+.welcome-card h2 {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.benefit-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.benefit-list li {
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.welcome-note {
+  margin-top: 15px;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #666;
+}

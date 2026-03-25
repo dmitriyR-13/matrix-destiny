@@ -5,6 +5,7 @@ const birthDateInput = document.querySelector('#birth-date');
 const calculateBtn = document.querySelector('#calculate-btn');
 const display = document.querySelector('#matrix-display');
 const ctaSection = document.querySelector('#cta-section');
+const welcomeContent = document.querySelector('#welcome-content');
 
 calculateBtn.addEventListener('click', () => {
   const dateValue = birthDateInput.value;
@@ -15,6 +16,9 @@ calculateBtn.addEventListener('click', () => {
   }
 
   try {
+    if (welcomeContent) {
+      welcomeContent.classList.add('welcome-hidden');
+    }
     const results = calculateMainPoints(dateValue);
     display.innerHTML = drawMatrix(results);
     display.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -23,6 +27,6 @@ calculateBtn.addEventListener('click', () => {
     }
 
   } catch (err) {
-    console.error("Ошибка при расчете или отрисовке:", err);
+    console.error("Ошибка:", err);
   }
 });
