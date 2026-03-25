@@ -8,7 +8,7 @@ const renderAges = (center, radius) => {
     const rad = (y.a * Math.PI) / 180;
     const x = center + (radius + 75) * Math.cos(rad);
     const yPos = center + (radius + 75) * Math.sin(rad);
-    return `<text x="${x}" y="${yPos}" fill="#333" font-size="16" font-weight="bold" text-anchor="middle">${y.t} лет</text>`;
+    return `<text x="${x}" y="${yPos}" fill="#333" font-size="20" font-weight="bold" text-anchor="middle">${y.t} лет</text>`;
   }).join('');
 };
 
@@ -73,43 +73,43 @@ export const drawMatrix = (data) => {
   const offset = radius * 0.707;
 
   const allNodes = [
-    { x: center, y: center, val: data.pointX, r: 40, color: '#3F51B5' },
-    { x: center - radius, y: center, val: data.pointA, r: 40, color: '#E91E63' },
-    { x: center, y: center - radius, val: data.pointB, r: 40, color: '#9C27B0' },
-    { x: center + radius, y: center, val: data.pointC, r: 40, color: '#FF9800' },
-    { x: center, y: center + radius, val: data.pointD, r: 40, color: '#FFEB3B' },
-    { x: center - offset, y: center - offset, val: data.pointE, r: 40, color: '#8BC34A' },
-    { x: center + offset, y: center - offset, val: data.pointF, r: 40, color: '#03A9F4' },
-    { x: center + offset, y: center + offset, val: data.pointG, r: 40, color: '#4CAF50' },
-    { x: center - offset, y: center + offset, val: data.pointH, r: 40, color: '#009688' },
+    { x: center, y: center, val: data.pointX, r: 40, fontSize: '38px', color: '#3F51B5' },
+    { x: center - radius, y: center, val: data.pointA, r: 40, fontSize: '36px', color: '#E91E63' },
+    { x: center, y: center - radius, val: data.pointB, r: 40, fontSize: '36px', color: '#9C27B0' },
+    { x: center + radius, y: center, val: data.pointC, r: 40, fontSize: '36px', color: '#FF9800' },
+    { x: center, y: center + radius, val: data.pointD, r: 40, fontSize: '36px', color: '#FFEB3B' },
+    { x: center - offset, y: center - offset, val: data.pointE, r: 40, fontSize: '36px', color: '#8BC34A' },
+    { x: center + offset, y: center - offset, val: data.pointF, r: 40, fontSize: '36px', color: '#03A9F4' },
+    { x: center + offset, y: center + offset, val: data.pointG, r: 40, fontSize: '36px', color: '#4CAF50' },
+    { x: center - offset, y: center + offset, val: data.pointH, r: 40, fontSize: '36px', color: '#009688' },
 
-    { x: center - radius * 0.8, y: center, val: data.pointAverA, r: 30, color: '#E91E63' },
-    { x: center, y: center - radius * 0.8, val: data.pointAverB, r: 30, color: '#9C27B0' },
-    { x: center + radius * 0.8, y: center, val: data.pointAverC, r: 30, color: '#FF9800' },
-    { x: center, y: center + radius * 0.8, val: data.pointAverD, r: 30, color: '#FFEB3B' },
-    { x: center - offset * 0.8, y: center - offset * 0.8, val: data.pointAverE, r: 30, color: '#8BC34A' },
-    { x: center + offset * 0.8, y: center - offset * 0.8, val: data.pointAverF, r: 30, color: '#03A9F4' },
-    { x: center + offset * 0.8, y: center + offset * 0.8, val: data.pointAverG, r: 30, color: '#4CAF50' },
-    { x: center - offset * 0.8, y: center + offset * 0.8, val: data.pointAverH, r: 30, color: '#009688' },
+    { x: center - radius * 0.8, y: center, val: data.pointAverA, r: 30, fontSize: '28px', color: '#E91E63' },
+    { x: center, y: center - radius * 0.8, val: data.pointAverB, r: 30, fontSize: '28px', color: '#9C27B0' },
+    { x: center + radius * 0.8, y: center, val: data.pointAverC, r: 30, fontSize: '28px', color: '#FF9800' },
+    { x: center, y: center + radius * 0.8, val: data.pointAverD, r: 30, fontSize: '28px', color: '#FFEB3B' },
+    { x: center - offset * 0.8, y: center - offset * 0.8, val: data.pointAverE, r: 30, fontSize: '28px', color: '#8BC34A' },
+    { x: center + offset * 0.8, y: center - offset * 0.8, val: data.pointAverF, r: 30, fontSize: '28px', color: '#03A9F4' },
+    { x: center + offset * 0.8, y: center + offset * 0.8, val: data.pointAverG, r: 30, fontSize: '28px', color: '#4CAF50' },
+    { x: center - offset * 0.8, y: center + offset * 0.8, val: data.pointAverH, r: 30, fontSize: '28px', color: '#009688' },
 
-    { x: center - radius * 0.65, y: center, val: data.pointSmallA, r: 22, color: '#E91E63' },
-    { x: center, y: center - radius * 0.65, val: data.pointSmallB, r: 22, color: '#9C27B0' },
-    { x: center + radius * 0.65, y: center, val: data.pointSmallC, r: 22, color: '#FF9800' },
-    { x: center, y: center + radius * 0.65, val: data.pointSmallD, r: 22, color: '#FFEB3B' },
-    { x: center - offset * 0.65, y: center - offset * 0.65, val: data.pointSmallE, r: 22, color: '#8BC34A' },
-    { x: center + offset * 0.65, y: center - offset * 0.65, val: data.pointSmallF, r: 22, color: '#03A9F4' },
-    { x: center + offset * 0.65, y: center + offset * 0.65, val: data.pointSmallG, r: 22, color: '#4CAF50' },
-    { x: center - offset * 0.65, y: center + offset * 0.65, val: data.pointSmallH, r: 22, color: '#009688' },
+    { x: center - radius * 0.65, y: center, val: data.pointSmallA, r: 22, fontSize: '18px', color: '#E91E63' },
+    { x: center, y: center - radius * 0.65, val: data.pointSmallB, r: 22, fontSize: '18px', color: '#9C27B0' },
+    { x: center + radius * 0.65, y: center, val: data.pointSmallC, r: 22, fontSize: '18px', color: '#FF9800' },
+    { x: center, y: center + radius * 0.65, val: data.pointSmallD, r: 22, fontSize: '18px', color: '#FFEB3B' },
+    { x: center - offset * 0.65, y: center - offset * 0.65, val: data.pointSmallE, r: 22, fontSize: '18px', color: '#8BC34A' },
+    { x: center + offset * 0.65, y: center - offset * 0.65, val: data.pointSmallF, r: 22, fontSize: '18px', color: '#03A9F4' },
+    { x: center + offset * 0.65, y: center + offset * 0.65, val: data.pointSmallG, r: 22, fontSize: '18px', color: '#4CAF50' },
+    { x: center - offset * 0.65, y: center + offset * 0.65, val: data.pointSmallH, r: 22, fontSize: '18px', color: '#009688' },
 
-    { x: center + 92, y: center + 90, val: data.pointHrtM, r: 18, color: '#f0f0f0', textColor: '#333' },
-    { x: center + 140, y: center + 82, val: data.pointHrtO, r: 18, color: '#f0f0f0', textColor: '#333' },
-    { x: center + 82, y: center + 140, val: data.pointHrtN, r: 18, color: '#f0f0f0', textColor: '#333' },
+    { x: center + 92, y: center + 90, val: data.pointHrtM, r: 18, fontSize: '16px', color: '#f0f0f0', textColor: '#333' },
+    { x: center + 140, y: center + 82, val: data.pointHrtO, r: 18, fontSize: '16px', color: '#f0f0f0', textColor: '#333' },
+    { x: center + 82, y: center + 140, val: data.pointHrtN, r: 18, fontSize: '16px', color: '#f0f0f0', textColor: '#333' },
 
-    { x: center + (radius * 0.25), y: center, val: data.socialPoint, r: 22, color: '#f0f0f0', textColor: '#333'},
-    { x: center + (radius * 0.45), y: center, val: data.spiritPoint, r: 22, color: '#f0f0f0', textColor: '#333'},
-    
-    { x: center - 100, y: center, val: data.pointWomen, r: 22, color: '#fbffb6ff', textColor: '#333'},
-    { x: center, y: center - 100, val: data.pointMen, r: 22, color: '#fbffb6ff', textColor: '#333'}
+    { x: center + (radius * 0.2), y: center, val: data.socialPoint, r: 22, fontSize: '18px', color: '#f0f0f0', textColor: '#333' },
+    { x: center + (radius * 0.35), y: center, val: data.spiritPoint, r: 22, fontSize: '18px', color: '#f0f0f0', textColor: '#333' },
+
+    { x: center - 100, y: center, val: data.pointWomen, r: 22, fontSize: '18px', color: '#fbffb6ff', textColor: '#333' },
+    { x: center, y: center - 100, val: data.pointMen, r: 22, fontSize: '18px', color: '#fbffb6ff', textColor: '#333' }
   ];
 
   return `
@@ -154,15 +154,15 @@ export const drawMatrix = (data) => {
                     fill="${p.color}" 
                     stroke="${isHrtNode ? '#d1d1d1' : 'white'}" 
                     stroke-width="${isHrtNode ? 1 : 2}" />
-            <text x="${p.x}" y="${p.y}" 
-                  fill="${currentTextColor}" 
-                  text-anchor="middle" 
-                  dominant-baseline="central" 
-                  font-weight="bold" 
-                  font-size="${p.r * (isHrtNode ? 0.7 : 0.6)}">
-              ${p.val || ''}
-            </text>
-          </g>`;
+                    <text x="${p.x}" y="${p.y}" 
+                      fill="${currentTextColor}" 
+                      text-anchor="middle" 
+                      dominant-baseline="central" 
+                      font-weight="bold" 
+                      font-size="${p.fontSize || (p.r * (isHrtNode ? 0.7 : 0.6))}">
+                      ${p.val || ''}
+                    </text>
+           </g>`;
   }).join('')}
     </svg>`;
 };
