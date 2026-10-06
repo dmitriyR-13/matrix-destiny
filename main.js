@@ -6,6 +6,7 @@ const calculateBtn = document.querySelector('#calculate-btn');
 const display = document.querySelector('#matrix-display');
 const ctaSection = document.querySelector('#cta-section');
 const welcomeContent = document.querySelector('#welcome-content');
+const groupDate2 = document.querySelector('#input-group-2')
 
 calculateBtn.addEventListener('click', () => {
   const dateValue = birthDateInput.value;
