@@ -9,6 +9,35 @@ export const reduceTo22 = (num) => {
     return result;
 };
 
+const buildPeripheral = (circleNodes) => {
+    const peripheral = new Array(80).fill(0);
+
+    for (let i = 0; i < circleNodes.length; i++) {
+        const start = circleNodes[i];
+        const end = circleNodes[(i + 1) % circleNodes.length];
+        const baseIdx = i * 10;
+
+        const p5 = reduceTo22(start + end);
+        const p25 = reduceTo22(start + p5);
+        const p75 = reduceTo22(p5 + end);
+        const p12 = reduceTo22(start + p25);
+        const p37 = reduceTo22(p25 + p5);
+        const p62 = reduceTo22(p5 + p75);
+        const p87 = reduceTo22(p75 + end);
+
+        peripheral[baseIdx] = start;
+
+        peripheral[baseIdx + 2] = p12;
+        peripheral[baseIdx + 3] = p25;
+        peripheral[baseIdx + 4] = p37;
+        peripheral[baseIdx + 5] = p5;
+        peripheral[baseIdx + 6] = p62;
+        peripheral[baseIdx + 7] = p75;
+        peripheral[baseIdx + 8] = p87;
+    }
+    return peripheral;
+};
+
 export const calculateMainPoints = (birthDateString) => {
     const date = new Date(birthDateString);
     if (isNaN(date.getTime())) return null;
@@ -22,6 +51,7 @@ export const calculateMainPoints = (birthDateString) => {
     const yearSum = String(year).split('').reduce((sum, d) => sum + parseInt(d), 0);
     const pointC = reduceTo22(yearSum);
     const pointD = reduceTo22(pointA + pointB + pointC);
+
     const pointX = reduceTo22(pointA + pointB + pointC + pointD);
 
     const pointE = reduceTo22(pointA + pointB);
@@ -69,33 +99,65 @@ export const calculateMainPoints = (birthDateString) => {
     };
 
     const circleNodes = [pointA, pointE, pointB, pointF, pointC, pointG, pointD, pointH];
-    const peripheral = new Array(80).fill(0);
+    results.peripheral = buildPeripheral(circleNodes);
+    return results;
+};
 
-    for (let i = 0; i < circleNodes.length; i++) {
-        const start = circleNodes[i];
-        const end = circleNodes[(i + 1) % circleNodes.length];
-        const baseIdx = i * 10;
+export const calculateCompatibility = (birthDate1, birthDate2) => {
+    const p1 = calculateMainPoints(birthDate1);
+    const p2 = calculateMainPoints(birthDate2);
 
-        const p5 = reduceTo22(start + end);
-        const p25 = reduceTo22(start + p5);
-        const p75 = reduceTo22(p5 + end);
-        const p12 = reduceTo22(start + p25);
-        const p37 = reduceTo22(p25 + p5);
-        const p62 = reduceTo22(p5 + p75);
-        const p87 = reduceTo22(p75 + end);
+    if (!p1 || !p2) return null;
 
-        peripheral[baseIdx] = start;
+    const pointA = reduceTo22(p1.pointA + p2.pointA);
+    const pointB = reduceTo22(p1.pointB + p2.pointB);
+    const pointC = reduceTo22(p1.pointC + p2.pointC);
+    const pointD = reduceTo22(p1.pointD + p2.pointD);
 
-        peripheral[baseIdx + 2] = p12;
-        peripheral[baseIdx + 3] = p25;
-        peripheral[baseIdx + 4] = p37;
-        peripheral[baseIdx + 5] = p5;
-        peripheral[baseIdx + 6] = p62;
-        peripheral[baseIdx + 7] = p75;
-        peripheral[baseIdx + 8] = p87;
-    }
+    const pointX = reduceTo22(p1.pointX + p2.pointX);
 
-    results.peripheral = peripheral;
+    const pointE = reduceTo22(p1.pointE + p2.pointE);
+    const pointF = reduceTo22(p1.pointF + p2.pointF);
+    const pointG = reduceTo22(p1.pointG + p2.pointG);
+    const pointH = reduceTo22(p1.pointH + p2.pointH);
+
+    const pointSmallA = reduceTo22(pointA + pointX);
+    const pointSmallB = reduceTo22(pointB + pointX);
+    const pointSmallC = reduceTo22(pointC + pointX);
+    const pointSmallD = reduceTo22(pointD + pointX);
+
+    const pointSmallE = reduceTo22(pointE + pointX);
+    const pointSmallF = reduceTo22(pointF + pointX);
+    const pointSmallG = reduceTo22(pointG + pointX);
+    const pointSmallH = reduceTo22(pointH + pointX);
+
+    const pointAverA = reduceTo22(pointA + pointSmallA);
+    const pointAverB = reduceTo22(pointB + pointSmallB);
+    const pointAverC = reduceTo22(pointC + pointSmallC);
+    const pointAverD = reduceTo22(pointD + pointSmallD);
+
+    const pointAverE = reduceTo22(pointE + pointSmallE);
+    const pointAverF = reduceTo22(pointF + pointSmallF);
+    const pointAverG = reduceTo22(pointG + pointSmallG);
+    const pointAverH = reduceTo22(pointH + pointSmallH);
+
+    const pointHrtM = reduceTo22(pointSmallD + pointSmallC);
+    const pointHrtN = reduceTo22(pointSmallD + pointHrtM);
+    const pointHrtO = reduceTo22(pointSmallC + pointHrtM);
+
+    const pointWomen = reduceTo22(pointX + pointSmallA);
+    const pointMen = reduceTo22(pointX + pointSmallB);
+
+    const results = {
+        pointA, pointB, pointC, pointD, pointE,
+        pointF, pointG, pointH, pointX,
+        pointSmallA, pointSmallB, pointSmallC, pointSmallD,
+        pointAverA, pointAverB, pointAverC, pointAverD,
+        pointHrtM, pointHrtN, pointHrtO, pointWomen, pointMen
+    };
+
+    const circleNodes = [pointA, pointE, pointB, pointF, pointC, pointG, pointD, pointH];
+    results.peripheral = buildPeripheral(circleNodes);
 
     return results;
 };

@@ -1,3 +1,16 @@
+const HIDDEN_IN_COMPATIBILITY = [
+  'socialPoint',
+  'spiritPoint',
+  'pointSmallE',
+  'pointSmallF',
+  'pointSmallG',
+  'pointSmallH',
+  'pointAverE',
+  'pointAverF',
+  'pointAverG',
+  'pointAverH'
+];
+
 const renderAges = (center, radius) => {
   const years = [
     { a: 180, t: "0" }, { a: 225, t: "10" }, { a: 270, t: "20" },
@@ -64,13 +77,18 @@ const renderPeripheralDots = (center, radius, data) => {
   return elements.join('');
 };
 
-export const drawMatrix = (data) => {
+export const drawMatrix = (data, isCompatibility = false) => {
   if (!data || !data.pointA) return '';
 
   const size = 1000;
   const center = size / 2;
   const radius = 360;
   const offset = radius * 0.707;
+
+  const hiddenInCompatibility = [
+    'socialPoint', 'spiritPoint', 'pointSmallE', 'pointSmallF', 'pointSmallG', 'pointSmallH',
+    'pointAverE', 'pointAverF', 'pointAverG', 'pointAverH'
+  ];
 
   const allNodes = [
     { x: center, y: center, val: data.pointX, r: 40, fontSize: '38px', color: '#3F51B5' },
@@ -136,9 +154,15 @@ export const drawMatrix = (data) => {
           <text x="${center + 100}" y="${center + 50}" fill="#4CAF50" font-weight="bold">$</text>
       </g>
 
-      ${renderAges(center, radius)}
+      ${renderAges ? renderAges(center, radius) : ''}
 
       ${allNodes.map(p => {
+    if (p.val === undefined || p.val === null || p.val === '') {
+      return '';
+    }
+    if (isCompatibility && hiddenInCompatibility.includes(p.key)) {
+      return '';
+    }
     let currentTextColor = 'white';
     if (p.textColor) {
       currentTextColor = p.textColor;
